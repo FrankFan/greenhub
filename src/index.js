@@ -58,14 +58,16 @@ function gitStatus() {
 }
 
 function gitAddWithCommit(commitMsg) {
-	var cmdStrAdd = github.add();
+	// var cmdStrAdd = github.add();
+	var cmdStrAdd = 'git add . \n' +
+					'git commit -m "up" ';
 	execCmd(cmdStrAdd, function(stdout) {
 		// console.log(stdout);
 
-		var cmdStrCommit = github.commit(commitMsg);
-		execCmd(cmdStrCommit, function(stdout) {
-			// console.log(stdout);
-		});
+		// var cmdStrCommit = github.commit(commitMsg);
+		// execCmd(cmdStrCommit, function(stdout) {
+		// 	// console.log(stdout);
+		// });
 	});
 
 	
