@@ -17,7 +17,8 @@ exports.outputHelp = function() {
 		'  Options: \n' +
 		'\n' +
 		'	-h, --help     output usage information\n' +
-		'	-v, --version  output the version number\n';
+		'	-v, --version  output the version number\n\n' + 
+		'  made with ❤ by FrankFan';
 
 	console.log(helpText);
 }

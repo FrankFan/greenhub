@@ -64,7 +64,7 @@ function gitAddWithCommit(commitMsg) {
 
 		var cmdStrCommit = github.commit(commitMsg);
 		execCmd(cmdStrCommit, function(stdout) {
-			console.log(stdout);
+			// console.log(stdout);
 		});
 	});
 
@@ -219,18 +219,14 @@ exports.run = function(from, to) {
 exports.go = function(from, to) {
 	console.log('come in go: ', from, to);
 
-
 	// 1.设置开始时间
 	var dateStr = dateTimeUtil.setDateTime(from);
 	var p = green.execCmdSudo(dateStr);
 	p.then(function(stdout) {
-		// console.log('stdout', stdout);
+		// 2.创建一个临时文件
+		createTmpFile();
+
 		while(!moment(Date.parse(from)).isSame(Date.parse(to))) {
-			
-			console.log(from);
-			
-			// 2.创建一个临时文件
-			createTmpFile();
 
 			// 3.make some changes
 			makeChanges();
@@ -248,12 +244,6 @@ exports.go = function(from, to) {
 
 		}
 	});
-
-
-
-
-
-
 
 
 
