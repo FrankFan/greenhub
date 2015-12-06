@@ -31,5 +31,5 @@ exports.getDate = function(date) {
 }
 
 exports.isBefore = function(from, to) {
-	return moment(from, 'YYYY-M-D').isBefore(to, 'YYYY-M-D');
+	return moment(Date.parse(from), 'YYYY-M-D').isBefore(Date.parse(to), 'YYYY-M-D');
 }

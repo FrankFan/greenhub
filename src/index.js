@@ -230,12 +230,16 @@ exports.go = function(from, to) {
 
 		while(!moment(Date.parse(from)).isSame(Date.parse(to))) {
 
+			console.log(from);
+
+			green.handleGitHub();
+
 			// 3.make some changes
-			makeChanges();
+			// makeChanges();
 
 			// gitStatus();
 
-			gitAddWithCommit('test update');
+			// gitAddWithCommit('test update');
 
 			// 4.git add .
 
