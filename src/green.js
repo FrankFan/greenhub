@@ -1,6 +1,7 @@
 'use strict';
 
 var exec = require('child_process').exec;
+var spawn = require('child_process').spawn;
 var execFile = require('child_process').execFile;
 var github = require('./githubHelper');
 var Q = require('q');
@@ -44,14 +45,23 @@ function execFileCmd(cmdStr, callback) {
 
 exports.handleGitHub = function(callback) {
 
-	var p0 = execFileCmd('./git.sh');
-	p0.then(function(stdout) {
-		console.log('execFileCmd ok');
-		callback && callback(stdout);
-	}, function(error) {
-		console.log('execFileCmd error ', error);
-
+	var child = spawn('ls', ['-lh']);
+	child.stdout.on('data', function(data) {
+		console.log('-----spawn --  ', data);
 	});
+
+	child.on('exit', function (code) {
+	   console.log('Child process exited with exit code '+code);
+	});
+
+
+	// p0.then(function(stdout) {
+	// 	console.log('execFileCmd ok');
+	// 	callback && callback(stdout);
+	// }, function(error) {
+	// 	console.log('execFileCmd error ', error);
+	// });
+
 	console.info('done handleGitHub');
 	
 
