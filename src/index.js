@@ -14,6 +14,7 @@
 
 
 var exec = require('child_process').exec;
+var execFile = require('child_process').execFile;
 var github = require('./githubHelper');
 var green = require('./green');
 var dateTimeUtil = require('./dateTimeUtil');
@@ -220,6 +221,16 @@ exports.run = function(from, to) {
  */
 exports.go = function(from, to) {
 	console.log('come in go: ', from, to);
+// console.log(__dirname);
+
+// execFile('./git.sh', {cwd: __dirname}, function(error, stdout, stderr){
+// 	console.log(stdout);
+// 	console.log(stderr);
+// 	console.log(error);
+// });
+
+// return;
+
 
 	// 1.设置开始时间
 	var dateStr = dateTimeUtil.setDateTime(from);
@@ -232,7 +243,20 @@ exports.go = function(from, to) {
 
 			console.log(from);
 
-			green.handleGitHub();
+			green.handleGitHub(function(stdout) {
+				console.log('ppppp');
+
+			});
+
+			from = moment(Date.parse(from)).add(1, 'd').format('YYYY-M-D');
+
+
+			// promise.then(function(stdout) {
+			// 	console.log('promise ok', stdout);
+			// 	from = moment(Date.parse(from)).add(1, 'd').format('YYYY-M-D');
+			// }, function(error) {
+			// 	console.log('promise err', error);
+			// });
 
 			// 3.make some changes
 			// makeChanges();
@@ -246,7 +270,7 @@ exports.go = function(from, to) {
 			// 5.git commit -m 'update'
 
 			// 6. 日期自增
-			from = moment(Date.parse(from)).add(1, 'd').format('YYYY-M-D');
+			// from = moment(Date.parse(from)).add(1, 'd').format('YYYY-M-D');
 
 		}
 	});

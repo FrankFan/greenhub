@@ -32,7 +32,7 @@ exports.execCmdSudo = function(cmdStr, callback) {
 
 function execFileCmd(cmdStr, callback) {
 	var deferred = Q.defer();
-	execFileCmd(cmdStr, function(err, stdout, stderr) {
+	execFile(cmdStr, {cwd: __dirname}, function(err, stdout, stderr) {
 		if (err) {
 			deferred.reject(err);
 		} else {
@@ -42,15 +42,18 @@ function execFileCmd(cmdStr, callback) {
 	return deferred.promise.nodeify(callback);
 }
 
-exports.handleGitHub = function() {
-	var deferred = Q.defer();
+exports.handleGitHub = function(callback) {
 
-	var p0 = execFileCmd('git.sh');
+	var p0 = execFileCmd('./git.sh');
 	p0.then(function(stdout) {
-		console.log('execFileCmd stdout ', stdout);
+		console.log('execFileCmd ok');
+		callback && callback(stdout);
 	}, function(error) {
 		console.log('execFileCmd error ', error);
+
 	});
+	console.info('done handleGitHub');
+	
 
 	// var cmdStrAddContent = github.addContent();
 	// var p = execCmd(cmdStrAddContent);
@@ -76,18 +79,6 @@ exports.handleGitHub = function() {
 	// console.log('git add .');
 	// console.log('git commit');
 }
-
-// var dateStr = dateTimeUtil.setDateTime(from);
-// var p = green.execCmdSudo(dateStr);
-// p.then(function(err, stdout) {
-// 	if (err) {
-// 		console.log(err);
-// 	} else {
-// 		console.log(stdout);
-// 	}
-// }).then(function() {
-	
-// })
 
 
 
