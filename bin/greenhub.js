@@ -26,7 +26,8 @@ var run = function(obj) {
 
 			if (isValidFrom === true && isValidTo === true && 
 				dateUtil.isBefore(from, to)) {
-				index.run(from, to);
+				// index.run(from, to);
+				index.go(from, to);
 			} else {
 				help.outputHelp();
 			}

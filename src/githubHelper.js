@@ -4,7 +4,7 @@ exports.newFile = function(filename) {
 }
 
 exports.addContent = function() {
-	return 'echo "update" >> aTempFile.js';
+	return 'echo "update" >> tmpFile.js';
 }
 
 exports.status = function() {
@@ -30,3 +30,4 @@ exports.push = function() {
 exports.rm = function(filename) {
 	return 'git rm ' + filename;
 }
+

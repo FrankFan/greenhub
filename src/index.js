@@ -15,17 +15,60 @@
 
 var exec = require('child_process').exec;
 var github = require('./githubHelper');
+var green = require('./green');
 var dateTimeUtil = require('./dateTimeUtil');
 var moment = require('moment');
 
-/*
- * createTmpFile -> oneDay -> addDay -> oneDay -> addDay -> resetDate -> push
- */
 
+function execCmd(cmdStr, callback) {
+	exec(cmdStr, function(err, stdout, stderr) {
+		if (err) {
+			console.log('error: ' + stderr);	
+		} else {
+			callback && callback(stdout);
+		}
+	});
+}
+
+function execCmdSudo(cmdStr, callback) {
+	exec('sudo ' + cmdStr, function(err, stdout, stderr) {
+		if (err) {
+			console.log('error: ' + stderr);	
+		} else {
+			callback && callback(stdout);
+		}
+	});
+}
 
 function createTmpFile() {
 	var cmdStrNewFile = github.newFile('tmpFile.js');
 	execCmd(cmdStrNewFile);
+}
+
+function makeChanges() {
+	var cmdStrAddContent = github.addContent();
+	execCmd(cmdStrAddContent);
+}
+
+function gitStatus() {
+	var cmdStrGitStatus = github.status();
+	execCmd(cmdStrGitStatus, function(stdout) {
+		// console.log(stdout);
+	});
+}
+
+function gitAddWithCommit(commitMsg) {
+	var cmdStrAdd = github.add();
+	execCmd(cmdStrAdd, function(stdout) {
+		// console.log(stdout);
+
+		var cmdStrCommit = github.commit(commitMsg);
+		execCmd(cmdStrCommit, function(stdout) {
+			console.log(stdout);
+		});
+	});
+
+	
 }
 
 function removeTmpFile() {
@@ -80,25 +123,7 @@ function lastDay() {
 }
 
 
-function execCmd(cmdStr, callback) {
-	exec(cmdStr, function(err, stdout, stderr) {
-		if (err) {
-			console.log('error: ' + stderr);	
-		} else {
-			callback && callback(stdout);
-		}
-	});
-}
 
-function execCmdSudo(cmdStr, callback) {
-	exec('sudo ' + cmdStr, function(err, stdout, stderr) {
-		if (err) {
-			console.log('error: ' + stderr);	
-		} else {
-			callback && callback(stdout);
-		}
-	});
-}
 
 
 function addDay() {
@@ -123,6 +148,8 @@ function setStartDate(date, callback) {
 	});
 }
 
+
+
 // 
 // createTmpFile();
 // oneDay();
@@ -145,15 +172,14 @@ exports.run = function(from, to) {
 	// console.log(dateTimeUtil.getDate(from));
 	// console.log(dateTimeUtil.getDate(to));
 
-	syncTime();
-	return;
-
+	
 	// 1.设置开始时间
 	setStartDate(from, function() {
 
 		while(!moment(Date.parse(from)).isSame(Date.parse(to))) {
 			
 			console.log(from);
+			
 			// 2.创建一个临时文件
 			// createTmpFile();
 
@@ -180,6 +206,73 @@ exports.run = function(from, to) {
 	});
 	
 }
+
+
+
+
+
+/**
+ * @from  {string} 2015-01-01
+ * @to    {string} 2015-02-11
+ * @return {void}
+ */
+exports.go = function(from, to) {
+	console.log('come in go: ', from, to);
+
+
+	// 1.设置开始时间
+	var dateStr = dateTimeUtil.setDateTime(from);
+	var p = green.execCmdSudo(dateStr);
+	p.then(function(stdout) {
+		// console.log('stdout', stdout);
+		while(!moment(Date.parse(from)).isSame(Date.parse(to))) {
+			
+			console.log(from);
+			
+			// 2.创建一个临时文件
+			createTmpFile();
+
+			// 3.make some changes
+			makeChanges();
+
+			// gitStatus();
+
+			gitAddWithCommit('test update');
+
+			// 4.git add .
+
+			// 5.git commit -m 'update'
+
+			// 6. 日期自增
+			from = moment(Date.parse(from)).add(1, 'd').format('YYYY-M-D');
+
+		}
+	});
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
