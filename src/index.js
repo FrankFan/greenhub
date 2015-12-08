@@ -1,5 +1,5 @@
 /*
- * github-contributor
+ * greenhub
  * http://fy98.com
  *
  */
@@ -56,22 +56,6 @@ function gitStatus() {
 	execCmd(cmdStrGitStatus, function(stdout) {
 		// console.log(stdout);
 	});
-}
-
-function gitAddWithCommit(commitMsg) {
-	// var cmdStrAdd = github.add();
-	var cmdStrAdd = 'git add . \n' +
-					'git commit -m "up" ';
-	execCmd(cmdStrAdd, function(stdout) {
-		// console.log(stdout);
-
-		// var cmdStrCommit = github.commit(commitMsg);
-		// execCmd(cmdStrCommit, function(stdout) {
-		// 	// console.log(stdout);
-		// });
-	});
-
-	
 }
 
 function removeTmpFile() {
@@ -229,8 +213,8 @@ exports.go = function(from, to) {
 // 	console.log(error);
 // });
 
-// syncTime();
-// return;
+syncTime();
+return;
 
 
 	// 1.设置开始时间
