@@ -54,7 +54,6 @@ function makeChanges() {
 function gitStatus() {
 	var cmdStrGitStatus = github.status();
 	execCmd(cmdStrGitStatus, function(stdout) {
-		// console.log(stdout);
 	});
 }
 
