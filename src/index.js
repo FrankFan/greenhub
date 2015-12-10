@@ -63,53 +63,35 @@ function removeTmpFile() {
 }
 
 function oneDay() {
-	console.log(2);
 
 	var cmdStrAddContent = github.addContent();
 	execCmd(cmdStrAddContent);
 
-	console.log(3);
-
 	var cmdStrAdd = github.add();
 	execCmd(cmdStrAdd);
-
-	console.log(4);
 
 	var cmdStrCommit = github.commit('update');
 	execCmd(cmdStrCommit);
 
-	console.log(5);
 }
 
 function lastDay() {
-	console.log(6);
 
 	var cmdStrRm = github.rm('tmpFile.js');
 	execCmd(cmdStrRm);
 
-	console.log(7);
-
 	var cmdStrAdd = github.add();
 	execCmd(cmdStrAdd);
-
-	console.log(8);
 
 	var cmdStrCommit = github.commit('rm tmpFile');
 	execCmd(cmdStrCommit);
 
-	console.log(9);
-
 	var cmdStrPull = github.pull();
 	execCmd(cmdStrPull);
-
-	console.log(10);
 
 	var cmdStrPush = github.push();
 	execCmd(cmdStrPush);
 }
-
-
-
 
 
 function addDay() {
