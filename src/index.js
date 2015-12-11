@@ -98,7 +98,6 @@ function addDay() {
 	execCmd('date', function(result) {
 		console.log(result);
 	});
-	console.log('e');
 }
 
 function syncTime() {
@@ -115,18 +114,6 @@ function setStartDate(date, callback) {
 		callback && callback();
 	});
 }
-
-
-
-// 
-// createTmpFile();
-// oneDay();
-// addDay();
-// lastDay();
-
-
-// addDay();
-
 
 
 /**
