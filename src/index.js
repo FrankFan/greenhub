@@ -124,9 +124,6 @@ function setStartDate(date, callback) {
 exports.run = function(from, to) {
 	console.log(from);
 	console.log(to);
-	// console.log(dateTimeUtil.getDate(from));
-	// console.log(dateTimeUtil.getDate(to));
-
 	
 	// 1.设置开始时间
 	setStartDate(from, function() {
