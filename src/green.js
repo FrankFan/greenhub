@@ -63,31 +63,6 @@ exports.handleGitHub = function(callback) {
 	// });
 
 	console.info('done handleGitHub');
-	
-
-	// var cmdStrAddContent = github.addContent();
-	// var p = execCmd(cmdStrAddContent);
-	// p.then(function(stdout) {
-	// 	console.log('----- make changes -----');
-	// 	// process.exit();
-
-	// 	var cmdStrAdd = github.add();
-	// 	var p1 = execCmd(cmdStrAdd);
-	// 	// console.log(p1.then);
-	// 	p1.then(function(stdout) {
-	// 		console.log('----- git add  -----');
-	// 	}, function (error) {
-	// 	    // We only get here if "foo" fails
-	// 	    console.log('----- git add error  -----', error);
-	// 	});
-	// }, function(error) {
-	// 	console.log('changes error');
-	// });
-
-	// console.log('------------------');
-	// console.log('update file');
-	// console.log('git add .');
-	// console.log('git commit');
 }
 
 
