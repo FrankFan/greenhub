@@ -54,14 +54,6 @@ exports.handleGitHub = function(callback) {
 	   console.log('Child process exited with exit code '+code);
 	});
 
-
-	// p0.then(function(stdout) {
-	// 	console.log('execFileCmd ok');
-	// 	callback && callback(stdout);
-	// }, function(error) {
-	// 	console.log('execFileCmd error ', error);
-	// });
-
 	console.info('done handleGitHub');
 }
 
