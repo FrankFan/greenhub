@@ -17,41 +17,41 @@ var Promise = require("bluebird");
 var exec = require('child_process').exec;
 var github = require('./githubHelper');
 
-var cmdStrNewFile = github.newFile();
+// var cmdStrNewFile = github.newFile();
 
-exec(cmdStrNewFile, function(err, stdout, stderr) {
-		if (err) {
-			console.log('error: ' + stderr);
-		} else {
-			// console.log(stdout);
-			var cmdStrAddContent = github.addContent();
+// exec(cmdStrNewFile, function(err, stdout, stderr) {
+// 		if (err) {
+// 			console.log('error: ' + stderr);
+// 		} else {
+// 			// console.log(stdout);
+// 			var cmdStrAddContent = github.addContent();
 
-			exec(cmdStrNewFile, function(err, stdout, stderr) {
-					if (err) {
-						console.log('error: ' + stderr);
-					} else {
-						// console.log(stdout);
+// 			exec(cmdStrNewFile, function(err, stdout, stderr) {
+// 					if (err) {
+// 						console.log('error: ' + stderr);
+// 					} else {
+// 						// console.log(stdout);
 
-						var cmdStrAdd = github.add();
-						exec(cmdStrAdd, function(err, stdout, stderr) {
-							if (err) {
-								console.log('error: ' + stderr);	
-							} else {
-								var cmdStrCommit = github.commit('update');
-								exec(cmdStrCommit, function(err, stdout, stderr) {
-									if (err) {
-										console.log('error: ' + stderr);	
-									} else {
-										
-									}
-								});
+// 						var cmdStrAdd = github.add();
+// 						exec(cmdStrAdd, function(err, stdout, stderr) {
+// 							if (err) {
+// 								console.log('error: ' + stderr);	
+// 							} else {
+// 								var cmdStrCommit = github.commit('update');
+// 								exec(cmdStrCommit, function(err, stdout, stderr) {
+// 									if (err) {
+// 										console.log('error: ' + stderr);	
+// 									} else {
 
-							}
-						});
-					}
-				});
-		}
-	});
+// 									}
+// 								});
+
+// 							}
+// 						});
+// 					}
+// 				});
+// 		}
+// 	});
 
 
 
@@ -62,4 +62,41 @@ exec(cmdStrNewFile, function(err, stdout, stderr) {
 // 		console.log(stdout);
 // 	}
 // });
+
+function doWork(cmdStr) {
+	exec(cmdStr, function(err, stdout, stderr) {
+		if (err) {
+			console.log('error: ' + stderr);	
+		} else {
+			console.log(stdout);
+		}
+	});
+}
+
+console.log(1);
+
+var cmdStrNewFile = github.newFile();
+doWork(cmdStrNewFile);
+
+console.log(2);
+
+var cmdStrAddContent = github.addContent();
+doWork(cmdStrAddContent);
+
+console.log(3);
+
+var cmdStrAdd = github.add();
+doWork(cmdStrAdd);
+
+console.log(4);
+
+var cmdStrCommit = github.commit('update');
+doWork(cmdStrCommit);
+
+console.log(5);
+
+
+
+
+
 
