@@ -14,22 +14,19 @@
 
 
 var Promise = require("bluebird");
-var exec = Promise.promisifyAll(require('child_process').exec);
+var exec = require('child_process').exec;
 var github = require('./githubHelper');
 
 var cmdStr = github.status();
 
-console.log(Promise);
-
-return;
-// exec(cmdStr)
-// 	.then(err, stdout, stderr) {
-// 		if (err) {
-// 			console.log('error: ' + stderr);
-// 		} else {
-// 			console.log(stdout);
-// 		}
-// 	}
+exec(cmdStr, function(err, stdout, stderr) {
+		if (err) {
+			console.log('error: ' + stderr);
+		} else {
+			console.log(stdout);
+			
+		}
+	});
 
 
 // exec(cmdStr, function(err, stdout, stderr) {
