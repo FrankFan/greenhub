@@ -73,30 +73,35 @@ function doWork(cmdStr) {
 	});
 }
 
-console.log(1);
-
-var cmdStrNewFile = github.newFile();
-doWork(cmdStrNewFile);
-
-console.log(2);
-
-var cmdStrAddContent = github.addContent();
-doWork(cmdStrAddContent);
-
-console.log(3);
-
-var cmdStrAdd = github.add();
-doWork(cmdStrAdd);
-
-console.log(4);
-
-var cmdStrCommit = github.commit('update');
-doWork(cmdStrCommit);
-
-console.log(5);
+/*
+ * createTmpFile -> oneDay -> addDay -> oneDay -> addDay -> resetDate -> push
+ */
 
 
+function createTmpFile() {
+	console.log(1);
+	var cmdStrNewFile = github.newFile();
+	doWork(cmdStrNewFile);	
+}
 
+function oneDay() {
+	console.log(2);
+
+	var cmdStrAddContent = github.addContent();
+	doWork(cmdStrAddContent);
+
+	console.log(3);
+
+	var cmdStrAdd = github.add();
+	doWork(cmdStrAdd);
+
+	console.log(4);
+
+	var cmdStrCommit = github.commit('update');
+	doWork(cmdStrCommit);
+
+	console.log(5);
+}
 
 
 
