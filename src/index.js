@@ -13,65 +13,9 @@
  // date {month}{day}{hour}{minute}{year}
 
 
-var Promise = require("bluebird");
 var exec = require('child_process').exec;
 var github = require('./githubHelper');
 
-// var cmdStrNewFile = github.newFile();
-
-// exec(cmdStrNewFile, function(err, stdout, stderr) {
-// 		if (err) {
-// 			console.log('error: ' + stderr);
-// 		} else {
-// 			// console.log(stdout);
-// 			var cmdStrAddContent = github.addContent();
-
-// 			exec(cmdStrNewFile, function(err, stdout, stderr) {
-// 					if (err) {
-// 						console.log('error: ' + stderr);
-// 					} else {
-// 						// console.log(stdout);
-
-// 						var cmdStrAdd = github.add();
-// 						exec(cmdStrAdd, function(err, stdout, stderr) {
-// 							if (err) {
-// 								console.log('error: ' + stderr);	
-// 							} else {
-// 								var cmdStrCommit = github.commit('update');
-// 								exec(cmdStrCommit, function(err, stdout, stderr) {
-// 									if (err) {
-// 										console.log('error: ' + stderr);	
-// 									} else {
-
-// 									}
-// 								});
-
-// 							}
-// 						});
-// 					}
-// 				});
-// 		}
-// 	});
-
-
-
-// exec(cmdStr, function(err, stdout, stderr) {
-// 	if (err) {
-// 		console.log('error: ' + stderr);
-// 	} else {
-// 		console.log(stdout);
-// 	}
-// });
-
-function doWork(cmdStr) {
-	exec(cmdStr, function(err, stdout, stderr) {
-		if (err) {
-			console.log('error: ' + stderr);	
-		} else {
-			console.log(stdout);
-		}
-	});
-}
 
 /*
  * createTmpFile -> oneDay -> addDay -> oneDay -> addDay -> resetDate -> push
@@ -80,28 +24,81 @@ function doWork(cmdStr) {
 
 function createTmpFile() {
 	console.log(1);
-	var cmdStrNewFile = github.newFile();
-	doWork(cmdStrNewFile);	
+	var cmdStrNewFile = github.newFile('tmpFile.js');
+	execCmd(cmdStrNewFile);
 }
 
 function oneDay() {
 	console.log(2);
 
 	var cmdStrAddContent = github.addContent();
-	doWork(cmdStrAddContent);
+	execCmd(cmdStrAddContent);
 
 	console.log(3);
 
 	var cmdStrAdd = github.add();
-	doWork(cmdStrAdd);
+	execCmd(cmdStrAdd);
 
 	console.log(4);
 
 	var cmdStrCommit = github.commit('update');
-	doWork(cmdStrCommit);
+	execCmd(cmdStrCommit);
 
 	console.log(5);
 }
 
+function lastDay() {
+	console.log(6);
+
+	var cmdStrRm = github.rm('tmpFile.js');
+	execCmd(cmdStrRm);
+
+	console.log(7);
+
+	var cmdStrAdd = github.add();
+	execCmd(cmdStrAdd);
+
+	console.log(8);
+
+	var cmdStrCommit = github.commit('rm tmpFile');
+	execCmd(cmdStrCommit);
+
+	console.log(9);
+
+	var cmdStrPull = github.pull();
+	execCmd(cmdStrPull);
+
+	console.log(10);
+
+	var cmdStrPush = github.push();
+	execCmd(cmdStrPush);
+}
 
 
+function execCmd(cmdStr, callback) {
+	exec(cmdStr, function(err, stdout, stderr) {
+		if (err) {
+			console.log('error: ' + stderr);	
+		} else {
+			console.log('d');
+			callback && callback(stdout);
+		}
+	});
+}
+
+
+function addDay() {
+	execCmd('date', function(result) {
+		console.log(result);	
+	});
+	console.log('e');
+}
+
+// 
+// createTmpFile();
+// oneDay();
+// addDay();
+// lastDay();
+
+
+addDay();

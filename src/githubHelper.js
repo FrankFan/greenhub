@@ -1,6 +1,6 @@
 
-exports.newFile = function() {
-	return 'touch aTempFile.js';
+exports.newFile = function(filename) {
+	return 'touch ' + filename;
 }
 
 exports.addContent = function() {
@@ -27,6 +27,6 @@ exports.push = function() {
 	return 'git push';
 }
 
-exports.rm = function(file) {
-	return 'git rm ' + file;
+exports.rm = function(filename) {
+	return 'git rm ' + filename;
 }
