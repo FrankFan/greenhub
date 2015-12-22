@@ -15,6 +15,7 @@
 
 var exec = require('child_process').exec;
 var github = require('./githubHelper');
+var dateTimeUtil = require('./dateTimeUtil');
 
 
 /*
@@ -89,9 +90,16 @@ function execCmd(cmdStr, callback) {
 
 function addDay() {
 	execCmd('date', function(result) {
-		console.log(result);	
+		console.log(result);
 	});
 	console.log('e');
+}
+
+function syncTime() {
+	var cmdStr = dateTimeUtil.syncTime();
+	execCmd(cmdStr, function() {
+		console.log(result);
+	});
 }
 
 // 
