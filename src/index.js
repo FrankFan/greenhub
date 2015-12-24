@@ -168,13 +168,6 @@ exports.run = function(from, to) {
  */
 exports.go = function(from, to) {
 	console.log('come in go: ', from, to);
-// console.log(__dirname);
-
-// execFile('./git.sh', {cwd: __dirname}, function(error, stdout, stderr){
-// 	console.log(stdout);
-// 	console.log(stderr);
-// 	console.log(error);
-// });
 
 syncTime();
 return;
