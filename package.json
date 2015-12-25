@@ -1,22 +1,23 @@
 {
-  "name": "github-contributor",
+  "name": "greenhub",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "bin": { "greenhub": "./bin/greenhub.js" },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FrankFan/github-contributor.git"
+    "url": "https://github.com/FrankFan/greenhub.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["git", "github", "contribute"],
+  "author": "FrankFan <fanyong@gmail.com> (http://fy98.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/FrankFan/github-contributor/issues"
+    "url": "https://github.com/FrankFan/greenhub/issues"
   },
-  "homepage": "https://github.com/FrankFan/github-contributor#readme",
+  "homepage": "https://github.com/FrankFan/greenhub#readme",
   "devDependencies": {
     "bluebird": "^3.1.1",
     "moment": "^2.10.6"

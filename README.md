@@ -1,11 +1,16 @@
-# github-contributor
+# greenhub
 
 ## usage
-fist of all, change directory to your repo:
+fist of all, change directory to your github repo:
+
+```bash
+$ npm install -g greenhub
+$ greenhub run 20151011 20151021
 ```
-$ npm install github-contributor
-$ github-contributor run 20151011 20151021
-```
+
+
+
+
 
 
 
