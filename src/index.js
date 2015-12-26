@@ -16,7 +16,7 @@
 var exec = require('child_process').exec;
 var github = require('./githubHelper');
 var dateTimeUtil = require('./dateTimeUtil');
-
+var moment = require('moment');
 
 /*
  * createTmpFile -> oneDay -> addDay -> oneDay -> addDay -> resetDate -> push
@@ -24,9 +24,13 @@ var dateTimeUtil = require('./dateTimeUtil');
 
 
 function createTmpFile() {
-	console.log(1);
 	var cmdStrNewFile = github.newFile('tmpFile.js');
 	execCmd(cmdStrNewFile);
+}
+
+function removeTmpFile() {
+	var cmdStrRmFile = github.rm('tmpFile.js');
+	execCmd(cmdStrRmFile);
 }
 
 function oneDay() {
@@ -81,7 +85,16 @@ function execCmd(cmdStr, callback) {
 		if (err) {
 			console.log('error: ' + stderr);	
 		} else {
-			console.log('d');
+			callback && callback(stdout);
+		}
+	});
+}
+
+function execCmdSudo(cmdStr, callback) {
+	exec('sudo ' + cmdStr, function(err, stdout, stderr) {
+		if (err) {
+			console.log('error: ' + stderr);	
+		} else {
 			callback && callback(stdout);
 		}
 	});
@@ -97,8 +110,16 @@ function addDay() {
 
 function syncTime() {
 	var cmdStr = dateTimeUtil.syncTime();
-	execCmd(cmdStr, function() {
+	execCmdSudo(cmdStr, function(result) {
 		console.log(result);
+	});
+}
+
+function setStartDate(date, callback) {
+	var dateStr = dateTimeUtil.setDateTime(date);
+	execCmdSudo(dateStr, function(result) {
+		console.log(result);
+		callback && callback();
 	});
 }
 
@@ -121,8 +142,42 @@ function syncTime() {
 exports.run = function(from, to) {
 	console.log(from);
 	console.log(to);
-	console.log(dateTimeUtil.getDate(from));
-	console.log(dateTimeUtil.getDate(to));
+	// console.log(dateTimeUtil.getDate(from));
+	// console.log(dateTimeUtil.getDate(to));
+
+	syncTime();
+	return;
+
+	// 1.设置开始时间
+	setStartDate(from, function() {
+
+		while(!moment(Date.parse(from)).isSame(Date.parse(to))) {
+			
+			console.log(from);
+			// 2.创建一个临时文件
+			// createTmpFile();
+
+			// 3.make some changes
+
+			// 4.git add .
+
+			// 5.git commit -m 'update'
+
+			// 6. 日期自增
+			from = moment(Date.parse(from)).add(1, 'd').format('YYYY-M-D');
+
+		}
+
+
+		// 7. 循环完毕，删除文件
+		// removeTmpFile();
+		// 8.git add & commit
+
+		// 9.git push
+
+		// 10.把时间改回来
+		// syncTime();
+	});
 	
 }
 

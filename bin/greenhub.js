@@ -24,11 +24,13 @@ var run = function(obj) {
 			var isValidFrom = dateUtil.isValid(from);
 			var isValidTo   = dateUtil.isValid(to);
 
-			if (isValidFrom === true && isValidTo === true) {
+			if (isValidFrom === true && isValidTo === true && 
+				dateUtil.isBefore(from, to)) {
 				index.run(from, to);
 			} else {
 				help.outputHelp();
 			}
+
 			
 		} else {
 			help.outputUnknowMsg();

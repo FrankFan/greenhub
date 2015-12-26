@@ -10,14 +10,14 @@
 exports.outputHelp = function() {
 	var helpText = 
 		'\n' +
-		'  Usage: greenhub run from to\r\n' +
+		'  make contributions to GitHub, date format `YYYY-mm-dd`\n' +
+		'\n' +
+		'  Usage: greenhub run from to  [from < to) \r\n' +
 		'\n' +
 		'  Options: \n' +
 		'\n' +
 		'	-h, --help     output usage information\n' +
-		'	-v, --version  output the version number\n' +
-		'	`run from to`  make contributions to GitHub repositories, date format `YYYY-mm-dd`\n'+
-		'\n';
+		'	-v, --version  output the version number\n';
 
 	console.log(helpText);
 }
