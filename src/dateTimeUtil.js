@@ -18,3 +18,17 @@ exports.syncTime = function() {
 	var cmdStr = 'sudo ntpdate -u time.apple.com';
 	return cmdStr;
 }
+
+/**
+ * @param  {string}
+ * @return {Boolean}
+ * check input is a valid date format or not
+ */
+exports.isValid = function(date) {
+	// return moment(Date.parse(date)).isValid();
+	return moment(date, 'YYYY-M-D').isValid();
+}
+
+exports.getDate = function(date) {
+	return moment(Date.parse(date)).get('date');
+}

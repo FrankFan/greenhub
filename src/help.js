@@ -15,7 +15,8 @@ exports.outputHelp = function() {
 		'  Options: \n' +
 		'\n' +
 		'	-h, --help     output usage information\n' +
-		'	-v, --version  output the version number' +
+		'	-v, --version  output the version number\n' +
+		'	`run from to`  make contributions to GitHub repositories, date format `YYYY-mm-dd`\n'+
 		'\n';
 
 	console.log(helpText);

@@ -3,7 +3,8 @@
 'use strict';
 
 var help = require('../src/help.js');
-var 
+var index = require('../src/index.js');
+var dateUtil = require('../src/dateTimeUtil.js');
 
 var run = function(obj) {
 	// greenhub run 20151011 20151021
@@ -20,9 +21,15 @@ var run = function(obj) {
 			var from = obj[1],
 				to   = obj[2];
 
-			console.log('obj ', obj);
-			console.log('from ', from);
-			console.log('to ', to);
+			var isValidFrom = dateUtil.isValid(from);
+			var isValidTo   = dateUtil.isValid(to);
+
+			if (isValidFrom === true && isValidTo === true) {
+				index.run(from, to);
+			} else {
+				help.outputHelp();
+			}
+			
 		} else {
 			help.outputUnknowMsg();
 		}

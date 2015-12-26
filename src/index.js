@@ -109,4 +109,22 @@ function syncTime() {
 // lastDay();
 
 
-addDay();
+// addDay();
+
+
+
+/**
+ * @from  {string} 2015-01-01
+ * @to    {string} 2015-02-11
+ * @return {void}
+ */
+exports.run = function(from, to) {
+	console.log(from);
+	console.log(to);
+	console.log(dateTimeUtil.getDate(from));
+	console.log(dateTimeUtil.getDate(to));
+	
+}
+
+
+
