@@ -7,7 +7,7 @@
 	// -v, --version  output the version number
 
 
-exports.help = function() {
+exports.outputHelp = function() {
 	var helpText = 
 		'\n' +
 		'  Usage: greenhub run from to\r\n' +
@@ -19,4 +19,9 @@ exports.help = function() {
 		'\n';
 
 	console.log(helpText);
+}
+
+exports.outputUnknowMsg = function() {
+	var unknowMsg = '\n  error: unknown command \n';
+	console.log(unknowMsg);
 }
