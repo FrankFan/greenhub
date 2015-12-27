@@ -155,10 +155,8 @@ exports.run = function(from, to) {
 
 		// 10.把时间改回来
 		// syncTime();
-	});
-	
+	});	
 }
-
 
 
 /**
