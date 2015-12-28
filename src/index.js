@@ -167,8 +167,8 @@ exports.run = function(from, to) {
 exports.go = function(from, to) {
 	console.log('come in go: ', from, to);
 
-syncTime();
-return;
+// syncTime();
+// return;
 
 
 	// 1.设置开始时间
