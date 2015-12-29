@@ -189,14 +189,6 @@ exports.go = function(from, to) {
 
 			from = moment(Date.parse(from)).add(1, 'd').format('YYYY-M-D');
 
-
-			// promise.then(function(stdout) {
-			// 	console.log('promise ok', stdout);
-			// 	from = moment(Date.parse(from)).add(1, 'd').format('YYYY-M-D');
-			// }, function(error) {
-			// 	console.log('promise err', error);
-			// });
-
 			// 3.make some changes
 			// makeChanges();
 
